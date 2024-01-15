@@ -24,6 +24,14 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'space-before-function-paren': 'off'
+    'space-before-function-paren': 'off',
+    // 关闭名称校验
+    // 'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['index'] // 在这个数组中加入需要忽略的组件名
+      }
+    ]
   }
 }
