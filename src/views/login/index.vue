@@ -1,25 +1,35 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
       <!-- username -->
-      <el-form-item>
+      <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon="user" />
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          v-model="loginForm.username"
+          placeholder="username"
+          name="username"
+          type="text"
+        />
       </el-form-item>
 
       <!-- password -->
-      <el-form-item>
+      <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" type="password" />
-        <span class="show-pwd">
-          <svg-icon icon="eye" />
+        <el-input
+          v-model="loginForm.password"
+          placeholder="password"
+          name="password"
+          :type="passwordType"
+        />
+        <span class="show-pwd" @click="onChangePwdType">
+          <svg-icon :icon="passwordIcon" />
         </span>
       </el-form-item>
 
@@ -32,7 +42,46 @@
 </template>
 
 <script setup>
-import {} from 'vue'
+import { ref, computed } from 'vue'
+import { validatePassword } from './rules'
+/**
+ * 数据源
+ */
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+
+/**
+ * 校验规则
+ */
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名不能为空'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    }
+  ]
+})
+
+// 密码框类型
+const passwordType = ref('password')
+
+const onChangePwdType = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
+
+const passwordIcon = computed(() => {
+  return passwordType.value === 'password' ? 'eye' : 'eye-open'
+})
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
