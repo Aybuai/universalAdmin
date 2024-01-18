@@ -5,6 +5,17 @@ function resolve(dir) {
 
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+  // webpack devServer 提供了代理的功能，该代理可以把请求到当前服务中的请求，转发（代理）到另一个服务器上
+  devServer: {
+    proxy: {
+      // 地址中包含 /api，触发此代理
+      '/api': {
+        target: 'https://api.imooc-admin.lgdsunday.club/',
+        // 当前请求是否是跨域请求
+        changeOrigin: true
+      }
+    }
+  },
   transpileDependencies: true,
   chainWebpack(config) {
     // 设置 svg-sprite-loader

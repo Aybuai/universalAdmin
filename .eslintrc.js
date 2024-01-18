@@ -32,6 +32,7 @@ module.exports = {
       {
         ignores: ['index'] // 在这个数组中加入需要忽略的组件名
       }
-    ]
+    ],
+    'no-useless-return': 'off'
   }
 }
