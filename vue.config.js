@@ -49,3 +49,30 @@ module.exports = defineConfig({
       .end()
   }
 })
+
+// 文章地址： https://juejin.cn/post/7093019506066980877?from=search-suggest
+/**
+ * 注意Dependencies需要引入
+ * "sass": "^1.32.7",
+ *"sass-loader": "^12.0.0",
+ *"sass-resources-loader": "^2.2.5"
+ * 全局变量的Sass引方法，值得收藏
+ * @param config  chainWebpack(config) 中来的一个配置
+ */
+// const globalSass = (config) => {
+//   const oneOfsMap = config.module.rule('scss').oneOfs.store
+//   oneOfsMap.forEach((item) => {
+//     item
+//       .use('sass-resources-loader')
+//       .loader('sass-resources-loader')
+//       .options({
+//         // 相对路径
+//         resources: [
+//           './src/styles/mixin.scss',
+//           './src/styles/sidebar.scss',
+//           './src/styles/variables.scss'
+//         ]
+//       })
+//       .end()
+//   })
+// }
