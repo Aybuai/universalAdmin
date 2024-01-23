@@ -1,4 +1,4 @@
-import { login } from '@/api/sys'
+import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
@@ -8,13 +8,17 @@ export default {
   namespaced: true,
   state: () => ({
     // 从 localStorage 中取token，以便自动登录
-    token: getItem(TOKEN) || ''
+    token: getItem(TOKEN) || '',
+    userInfo: {}
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
       // 存储持久层
       setItem(TOKEN, token)
+    },
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   actions: {
@@ -41,6 +45,14 @@ export default {
             reject(err)
           })
       })
+    },
+    /**
+     * 获取用户信息
+     */
+    async getUserInfo() {
+      const res = await getUserInfo()
+      this.commit('user/setUserInfo', res)
+      return res
     }
   }
 }
