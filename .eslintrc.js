@@ -30,7 +30,7 @@ module.exports = {
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['index', 'Navbar'] // 在这个数组中加入需要忽略的组件名
+        ignores: ['index', 'Navbar', '401', '404'] // 在这个数组中加入需要忽略的组件名
       }
     ],
     'no-useless-return': 'off'
