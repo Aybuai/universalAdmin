@@ -16,6 +16,14 @@ module.exports = defineConfig({
       }
     }
   },
+  // path-browserify 是一个 npm 的库，提供了 path 相似的方法
+  configureWebpack: {
+    resolve: {
+      fallback: {
+        path: require.resolve('path-browserify')
+      }
+    }
+  },
   transpileDependencies: true,
   chainWebpack(config) {
     // 设置 svg-sprite-loader

@@ -1,32 +1,36 @@
 <template>
   <el-menu
+    :default-active="activeMenu"
     :unique-opened="true"
-    default-active="2"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    :background-color="$store.getters.cssVar.menuBg"
+    :text-color="$store.getters.cssVar.menuText"
+    :active-text-color="$store.getters.cssVar.menuActiveText"
+    router
   >
-    <el-submenu index="1">
-      <template #title>
-        <i class="el-icon-location"></i>
-        <span>导航一</span>
-      </template>
-      <el-menu-item-group title="Group One">
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">选项3</el-menu-item>
-      </el-menu-item-group>
-    </el-submenu>
-    <el-menu-item index="2">
-      <template #title>
-        <i class="el-icon-setting"></i>
-        <span>导航二</span>
-      </template>
-    </el-menu-item>
+    <sidebar-item
+      v-for="item in routes"
+      :key="item.path"
+      :route="item"
+    ></sidebar-item>
   </el-menu>
 </template>
 
-<script setup></script>
+<script setup>
+import SidebarItem from './SidebarItem.vue'
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { filterRouters, generateMenus } from '@/utils/route'
+
+const router = useRouter()
+const routes = computed(() => {
+  const fRouters = filterRouters(router.getRoutes())
+  return generateMenus(fRouters)
+})
+
+// 计算高亮 menu 的方法 || 默认激活
+const route = useRoute()
+const activeMenu = computed(() => {
+  return route.path
+})
+</script>
 <style scoped lang="scss"></style>
