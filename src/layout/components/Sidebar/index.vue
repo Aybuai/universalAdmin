@@ -3,7 +3,7 @@
     <div class="logo-container">
       <el-avatar
         shape="square"
-        :size="40"
+        :size="logoHeight"
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
       ></el-avatar>
       <h1 v-if="$store.getters.sidebarOpened" class="logo-title">
@@ -18,10 +18,12 @@
 
 <script setup>
 import SidebarMenu from './SidebarMenu'
+
+const logoHeight = 44
 </script>
 <style scoped lang="scss">
 .logo-container {
-  height: 44px;
+  height: v-bind(logoHeight) + 'px';
   padding: 10px 0 22px 0;
   display: flex;
   align-items: center;
