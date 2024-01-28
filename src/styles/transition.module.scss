@@ -1,15 +1,18 @@
+/* 1. 声明过渡效果 */
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
   transition: all 0.5s ease;
 }
 
-
+/* 2. 声明进入和离开的状态 */
 .breadcrumb-enter-from,
 .breadcrumb-leave-to {
   opacity: 0;
   transform: translateX(20px);
 }
 
+/* 3. 确保离开的项目被移除出了布局流
+      以便正确地计算移动时的动画效果。 */
 .breadcrumb-leave-active {
   position: absolute;
 }
