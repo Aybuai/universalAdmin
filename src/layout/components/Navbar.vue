@@ -3,6 +3,9 @@
     <!-- 汉堡🍔 -->
     <hamburger class="hamburger-container" />
 
+    <!-- 面包屑 -->
+    <breadcrumb class="breadcrumb-container" />
+
     <!-- 右侧用户操作 -->
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
@@ -34,7 +37,8 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import Hamburger from '@/components/hamburger/index.vue'
+import Hamburger from '@/components/Hamburger/index.vue'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
 
 const store = useStore()
 const onLogout = () => {
@@ -60,6 +64,10 @@ const onLogout = () => {
     &:hover {
       background: rgb(0, 0, 0, 0.1);
     }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
 
   .right-menu {
