@@ -51,7 +51,7 @@ const handleSetLanguage = (lang) => {
   // i18n 中 变量要切换
   i18n.locale.value = lang
   store.commit('app/setLanguage', lang)
-  ElMessage.success('更新成功')
+  ElMessage.success(i18n.t('toast.switchLangSuccess'))
 }
 </script>
 <style scoped lang="scss"></style>

@@ -24,13 +24,13 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item> 首页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('navBar.home') }} </el-dropdown-item>
             </router-link>
             <a target="__blank" href="https://github.com/Aybuai/universalAdmin">
               <el-dropdown-item> GitHub </el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="onLogout">
-              退出登录
+              {{ $t('navBar.logout') }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>

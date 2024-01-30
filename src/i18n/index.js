@@ -9,18 +9,16 @@
 import { createI18n } from 'vue-i18n'
 import { LANG } from '@/constant'
 import { getItem } from '@/utils/storage'
+import zhLocale from './lang/zh'
+import enLocale from './lang/en'
 
 // 数据源
 const messages = {
   en: {
-    msg: {
-      test: 'hello world'
-    }
+    ...enLocale
   },
   zh: {
-    msg: {
-      test: '你好世界'
-    }
+    ...zhLocale
   }
 }
 
