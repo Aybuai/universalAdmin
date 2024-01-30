@@ -8,6 +8,10 @@
 
     <!-- 右侧用户操作 -->
     <div class="right-menu">
+      <!-- 国际化切换 -->
+      <lang-select class="right-menu-item hover-effect"></lang-select>
+
+      <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar
@@ -39,6 +43,7 @@
 import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 const store = useStore()
 const onLogout = () => {
@@ -75,6 +80,18 @@ const onLogout = () => {
     align-items: center;
     float: right;
     padding-right: 16px;
+
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding-right: 18px;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
 
     ::v-deep .avatar-container {
       cursor: pointer;

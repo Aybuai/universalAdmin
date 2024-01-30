@@ -6,8 +6,10 @@
  * 3、通过一个方法来获取 当前语言 下 指定属性 的值
  * 4、该值即为国际化下展示的值
  */
-
 import { createI18n } from 'vue-i18n'
+import { LANG } from '@/constant'
+import { getItem } from '@/utils/storage'
+
 // 数据源
 const messages = {
   en: {
@@ -23,7 +25,7 @@ const messages = {
 }
 
 // 变量
-const locale = 'en'
+const locale = getItem(LANG) || 'zh'
 
 const i18n = createI18n({
   // 使用 composition API
