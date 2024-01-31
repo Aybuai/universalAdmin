@@ -7,10 +7,9 @@
  * 4、该值即为国际化下展示的值
  */
 import { createI18n } from 'vue-i18n'
-import { LANG } from '@/constant'
-import { getItem } from '@/utils/storage'
 import zhLocale from './lang/zh'
 import enLocale from './lang/en'
+import store from '@/store'
 
 // 数据源
 const messages = {
@@ -23,14 +22,16 @@ const messages = {
 }
 
 // 变量
-const locale = getItem(LANG) || 'zh'
+const getLanguage = () => {
+  return store && store.getters && store.getters.language
+}
 
 const i18n = createI18n({
   // 使用 composition API
   legacy: false,
   // 使用全局 t 函数
   globalInjection: true,
-  locale,
+  locale: getLanguage(),
   messages
 })
 
