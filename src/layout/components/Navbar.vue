@@ -8,6 +8,9 @@
 
     <!-- 右侧用户操作 -->
     <div class="right-menu">
+      <!-- 主题切换 -->
+      <theme-picker class="right-menu-item hover-effect"></theme-picker>
+
       <!-- 国际化切换 -->
       <lang-select class="right-menu-item hover-effect"></lang-select>
 
@@ -44,6 +47,7 @@ import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ThemePicker from '@/components/ThemePicker/index.vue'
 
 const store = useStore()
 const onLogout = () => {
