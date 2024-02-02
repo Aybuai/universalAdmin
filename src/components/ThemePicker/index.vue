@@ -23,10 +23,22 @@
     </template>
   </el-dropdown>
   <!-- 弹出展示层 -->
-  <div></div>
+  <div>
+    <select-color
+      :dialogVisible="selectColorVisible"
+      @update:dialogVisible="selectColorVisible = $event"
+    />
+  </div>
 </template>
 
 <script setup>
-const handleSetTheme = (command) => {}
+import { ref } from 'vue'
+import SelectColor from './components/SelectColor.vue'
+
+const selectColorVisible = ref(false)
+
+const handleSetTheme = (command) => {
+  selectColorVisible.value = true
+}
 </script>
 <style scoped lang="scss"></style>
