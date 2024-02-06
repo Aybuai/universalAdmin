@@ -6,7 +6,7 @@
     <!-- 左侧 menu -->
     <sidebar
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     ></sidebar>
     <div class="main-container">
       <!-- 顶部的 navbar -->
@@ -25,7 +25,7 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
 // 因为 vue-cli 大于版本5，默认没有开启 css-module，所以 scss 文件必须命名 xxx.module.scss 以达到效果
-import variables from '@/styles/variables.module.scss'
+// import variables from '@/styles/variables.module.scss'
 </script>
 <style scoped lang="scss">
 @import '~@/styles/mixin.module.scss';
