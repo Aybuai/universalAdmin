@@ -8,6 +8,8 @@
 
     <!-- 右侧用户操作 -->
     <div class="right-menu">
+      <!-- 全屏 -->
+      <screenfull class="right-menu-item hover-effect" />
       <!-- 主题切换 -->
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
 
@@ -48,6 +50,7 @@ import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
+import Screenfull from '@/components/Screenfull/index.vue'
 
 const store = useStore()
 const onLogout = () => {
