@@ -8,6 +8,8 @@
 
     <!-- 右侧用户操作 -->
     <div class="right-menu">
+      <!-- 全局搜索 -->
+      <header-search class="right-menu-item hover-effect"></header-search>
       <!-- 全屏 -->
       <screenfull class="right-menu-item hover-effect" />
       <!-- 主题切换 -->
@@ -51,6 +53,7 @@ import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
+import HeaderSearch from '@/components/HeaderSearch/index.vue'
 
 const store = useStore()
 const onLogout = () => {
