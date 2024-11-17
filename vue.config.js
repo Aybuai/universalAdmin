@@ -14,6 +14,10 @@ module.exports = defineConfig({
         // 当前请求是否是跨域请求
         changeOrigin: true
       }
+    },
+    // 报错解决参考： https://blog.csdn.net/weixin_68443051/article/details/140343081
+    client: {
+      overlay: false
     }
   },
   // path-browserify 是一个 npm 的库，提供了 path 相似的方法
