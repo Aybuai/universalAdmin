@@ -23,7 +23,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { filterRouters, generateMenus } from '@/utils/route'
+import { useRouter } from 'vue-router'
+
+// 检索数据源
+const router = useRouter()
+const searchPool = computed(() => {
+  const filterRoutes = filterRouters(router.getRoutes())
+  return generateMenus(filterRoutes)
+})
+console.log(searchPool, 'searchPool')
 
 // 控制 search 显示
 const isShow = ref(false)
