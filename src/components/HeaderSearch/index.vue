@@ -48,7 +48,7 @@ const onShowClick = () => {
 const search = ref('')
 // 搜索方法
 const querySearch = () => {
-  console.log('querySearch')
+  console.log('querySearch.')
 }
 // 选中回调
 const onSelectChange = () => {
