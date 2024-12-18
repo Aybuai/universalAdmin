@@ -52,7 +52,7 @@ const querySearch = () => {
 }
 // 选中回调
 const onSelectChange = () => {
-  console.log('onSelectChange.')
+  console.log('onSelectChange')
 }
 </script>
 
