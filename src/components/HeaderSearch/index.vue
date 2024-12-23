@@ -33,7 +33,7 @@ const searchPool = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
-console.log(searchPool, 'searchPool')
+console.log(searchPool, 'searchPool.')
 
 // 控制 search 显示
 const isShow = ref(false)
