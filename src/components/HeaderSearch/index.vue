@@ -13,7 +13,7 @@
       @change="onSelectChange"
     >
       <el-option
-        v-for="option in 3"
+        v-for="option in 5"
         :key="option"
         :label="option"
         :value="option"
