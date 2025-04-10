@@ -81,8 +81,8 @@ const querySearch = (query) => {
   }
 }
 // 选中回调
-const onSelectChange = () => {
-  console.log('onSelectChange')
+const onSelectChange = (val) => {
+  router.push(val.path)
 }
 </script>
 
