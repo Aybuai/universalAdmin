@@ -21,7 +21,7 @@ export const generateRoutes = (routes, basePath = '/', prefixTitle = []) => {
     // 匹配动态路由的正则
     const re = /.*\/:.*/
     if (route.meta && route.meta.title && !re.exec(route.path)) {
-      const i18nTitle = i18n.global.t(`msg.route.${route.meta.title}`)
+      const i18nTitle = i18n.global.t(`route.${route.meta.title}`)
       data.title = [...data.title, i18nTitle]
       res.push(data)
     }

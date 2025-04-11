@@ -1,5 +1,9 @@
 <template>
-  <div class="header-search" :class="{ show: isShow }" @click="onShowClick">
+  <div
+    class="header-search"
+    :class="{ show: isShow }"
+    @click.stop="onShowClick"
+  >
     <svg-icon class-name="search-icon" icon="search" />
     <el-select
       ref="headerSearchSelectRef"
@@ -23,15 +27,16 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { filterRouters } from '@/utils/route'
 import { generateRoutes } from './FuseData'
 import { useRouter } from 'vue-router'
 import Fuse from 'fuse.js'
+import { watchSwitchLang } from '@/utils/i18n'
 
 // 检索数据源
 const router = useRouter()
-const searchPool = computed(() => {
+let searchPool = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateRoutes(filterRoutes)
 })
@@ -39,25 +44,29 @@ const searchPool = computed(() => {
 /**
  * 搜索库相关
  */
-const fuse = new Fuse(searchPool.value, {
-  // 是否按优先级进行排序
-  shouldSort: true,
-  // 匹配长度超过这个值的才会被认为是匹配的
-  minMatchCharLength: 1,
-  // 将被搜索的键列表。 这支持嵌套路径、加权搜索、在字符串和对象数组中搜索。
-  // name：搜索的键
-  // weight：对应的权重
-  keys: [
-    {
-      name: 'title',
-      weight: 0.7
-    },
-    {
-      name: 'path',
-      weight: 0.3
-    }
-  ]
-})
+let fuse
+const initFuse = (searchPool) => {
+  fuse = new Fuse(searchPool, {
+    // 是否按优先级进行排序
+    shouldSort: true,
+    // 匹配长度超过这个值的才会被认为是匹配的
+    minMatchCharLength: 1,
+    // 将被搜索的键列表。 这支持嵌套路径、加权搜索、在字符串和对象数组中搜索。
+    // name：搜索的键
+    // weight：对应的权重
+    keys: [
+      {
+        name: 'title',
+        weight: 0.7
+      },
+      {
+        name: 'path',
+        weight: 0.3
+      }
+    ]
+  })
+}
+initFuse(searchPool.value)
 
 // 控制 search 显示
 const isShow = ref(false)
@@ -65,7 +74,6 @@ const isShow = ref(false)
 const headerSearchSelectRef = ref(null)
 const onShowClick = () => {
   isShow.value = !isShow.value
-  headerSearchSelectRef.value.focus()
 }
 
 // search 相关
@@ -84,6 +92,39 @@ const querySearch = (query) => {
 const onSelectChange = (val) => {
   router.push(val.path)
 }
+
+/**
+ * 关闭 search 的处理事件
+ */
+const onClose = () => {
+  headerSearchSelectRef.value.blur()
+  isShow.value = false
+  searchOptions.value = []
+  search.value = ''
+}
+
+/**
+ * 监听 search 打开，处理 close 事件
+ */
+watch(isShow, (val) => {
+  if (val) {
+    headerSearchSelectRef.value.focus()
+    document.body.addEventListener('click', onClose)
+  } else {
+    document.body.removeEventListener('click', onClose)
+  }
+})
+
+// 监听 lang 的变更，执行其中的所有回调函数
+watchSwitchLang(() => {
+  // 重新赋值数据源
+  searchPool = computed(() => {
+    const filterRoutes = filterRouters(router.getRoutes())
+    return generateRoutes(filterRoutes)
+  })
+  // 重新赋值搜索源
+  initFuse(searchPool.value)
+})
 </script>
 
 <style lang="scss" scoped>
