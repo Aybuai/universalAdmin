@@ -47,7 +47,7 @@ service.interceptors.response.use(
   },
   (error) => {
     // 处理 token 超时问题
-    // 被动处理：同时应对 token 失效 与 单点登录（有的话再增加个状态码）
+    // 被动处理：同时应对 token 失效 与 单用户登录（有的话再增加个状态码）
     if (
       error.response &&
       error.response.data &&
