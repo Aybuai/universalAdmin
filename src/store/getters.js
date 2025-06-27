@@ -15,6 +15,7 @@ const getters = {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
   userInfo: (state) => state.user.userInfo,
+  // 相当于计算属性，当state中的依赖属性发生变化才会重新触发响应式
   cssVar: (state) => ({
     ...state.theme.variables,
     ...generateColors(getItem(MAIN_COLOR))
