@@ -24,10 +24,7 @@
   </el-dropdown>
   <!-- 弹出展示层 -->
   <div>
-    <select-color
-      :dialogVisible="selectColorVisible"
-      @update:dialogVisible="selectColorVisible = $event"
-    />
+    <select-color v-model:dialogVisible="selectColorVisible" />
   </div>
 </template>
 
