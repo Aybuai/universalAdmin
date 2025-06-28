@@ -97,7 +97,6 @@ const onSelectChange = (val) => {
  * 关闭 search 的处理事件
  */
 const onClose = () => {
-  headerSearchSelectRef.value.blur()
   isShow.value = false
   searchOptions.value = []
   search.value = ''
@@ -111,6 +110,7 @@ watch(isShow, (val) => {
     headerSearchSelectRef.value.focus()
     document.body.addEventListener('click', onClose)
   } else {
+    headerSearchSelectRef.value.blur()
     document.body.removeEventListener('click', onClose)
   }
 })
