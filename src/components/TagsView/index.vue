@@ -12,7 +12,8 @@
       }"
       @contextmenu.prevent="onOpenContextmenu($event, index)"
     >
-      {{ tag.title }}
+      <!-- title 国际化显式 -->
+      {{ getTitle(tag) }}
       <i
         v-show="!isActive(tag)"
         class="el-icon-close"
@@ -33,6 +34,7 @@ import ContextMenu from './ContextMenu.vue'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+import { getTitle } from '@/utils/tags'
 
 const route = useRoute()
 // 判断 tag 是否选中状态

@@ -15,26 +15,10 @@
 </template>
 
 <script setup>
-import { isTags } from '@/utils/tags'
+import { isTags, getTitle } from '@/utils/tags'
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { generateTitle, watchSwitchLang } from '@/utils/i18n'
-
-/**
- * 生成 title
- */
-const getTitle = (route) => {
-  let title = ''
-  if (!route.meta) {
-    // 处理无 meta 的路由
-    const pathArr = route.path.split('/')
-    title = pathArr[pathArr.length - 1]
-  } else {
-    title = generateTitle(route.meta.title)
-  }
-  return title
-}
 
 const store = useStore()
 const route = useRoute()
@@ -58,19 +42,6 @@ watch(
     immediate: true
   }
 )
-
-// 切换中英文，tag title 动态展示中英文
-watchSwitchLang(() => {
-  store.getters.tagsViewList.forEach((route, index) => {
-    store.commit('app/changeTagsView', {
-      index,
-      tag: {
-        ...route,
-        title: getTitle(route)
-      }
-    })
-  })
-})
 </script>
 <style scoped lang="scss">
 .app-main {
