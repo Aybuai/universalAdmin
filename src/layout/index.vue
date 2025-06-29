@@ -12,6 +12,8 @@
       <!-- 顶部的 navbar -->
       <div class="fixed-header">
         <navbar />
+        <!-- tags -->
+        <tags-view></tags-view>
       </div>
       <!-- 内容区 -->
       <app-main />
@@ -24,6 +26,7 @@ import {} from 'vue'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
+import TagsView from '@/components/TagsView'
 // 因为 vue-cli 大于版本5，默认没有开启 css-module，所以 scss 文件必须命名 xxx.module.scss 以达到效果
 // import variables from '@/styles/variables.module.scss'
 </script>

@@ -25,6 +25,11 @@ export default {
         state.tagsViewList.push(tag)
         setItem(TAGS_VIEW, state.tagsViewList)
       }
+    },
+    // 修改指定 tags 中英文切换 title 展示
+    changeTagsView(state, { index, tag }) {
+      state.tagsViewList[index] = tag
+      setItem(TAGS_VIEW, state.tagsViewList)
     }
   }
 }
