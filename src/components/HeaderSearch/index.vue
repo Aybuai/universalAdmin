@@ -4,7 +4,11 @@
     :class="{ show: isShow }"
     @click.stop="onShowClick"
   >
-    <svg-icon class-name="search-icon" icon="search" />
+    <el-tooltip :content="$t('navBar.headerSearch')">
+      <div class="search-icon">
+        <svg-icon icon="search" />
+      </div>
+    </el-tooltip>
     <el-select
       ref="headerSearchSelectRef"
       class="header-search-select"
@@ -131,6 +135,7 @@ watchSwitchLang(() => {
 .header-search {
   font-size: 0 !important;
   ::v-deep .search-icon {
+    display: inline;
     cursor: pointer;
     font-size: 18px;
     vertical-align: middle;

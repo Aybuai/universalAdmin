@@ -1,8 +1,12 @@
 <template>
   <div @click="onToggle">
-    <svg-icon
-      :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
-    ></svg-icon>
+    <el-tooltip :content="$t('navBar.screenfull')">
+      <div>
+        <svg-icon
+          :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
+        ></svg-icon>
+      </div>
+    </el-tooltip>
   </div>
 </template>
 
