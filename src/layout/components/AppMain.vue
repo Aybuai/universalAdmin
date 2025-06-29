@@ -1,6 +1,16 @@
 <template>
   <div class="app-main">
-    <router-view></router-view>
+    <!-- 带有切换动画，并且具备组件缓存 -->
+    <router-view v-slot="{ Component, route }">
+      <!-- <transition> 只能用于单元素/组件之上，所以 component 动态组件外嵌套一个 div 根标签 -->
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive>
+          <div :key="route.path">
+            <component :is="Component" />
+          </div>
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -64,12 +74,12 @@ watchSwitchLang(() => {
 </script>
 <style scoped lang="scss">
 .app-main {
-  // 浏览器可视高度为 100vh
-  min-height: calc(100vh - 50px);
+  // 浏览器可视高度为 100vh 减去 navbar 和 tagView 的高度
+  min-height: calc(100vh - 50px - 43px);
   width: 100%;
   position: relative;
   overflow: hidden;
-  padding: 61px 20px 20px 20px;
+  padding: 104px 20px 20px 20px;
   box-sizing: border-box;
 }
 </style>
