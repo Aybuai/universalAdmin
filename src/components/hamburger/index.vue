@@ -1,6 +1,6 @@
 <template>
   <div class="hamburger-container" @click="toggleClick">
-    <svg-icon class="hamburger" :icon="icon"></svg-icon>
+    <svg-icon id="guide-hamburger" class="hamburger" :icon="icon"></svg-icon>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ const icon = computed(() => {
 .hamburger-container {
   padding: 0 16px;
   .hamburger {
-    display: inline-block;
+    line-height: 20px;
     vertical-align: middle;
     width: 20px;
     height: 20px;

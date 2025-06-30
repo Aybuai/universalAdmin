@@ -10,9 +10,7 @@
         :content="$t('navBar.lang')"
         placement="bottom"
       >
-        <div>
-          <svg-icon icon="language"></svg-icon>
-        </div>
+        <svg-icon id="guide-lang" icon="language"></svg-icon>
       </el-tooltip>
     </div>
     <template #dropdown>

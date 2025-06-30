@@ -4,10 +4,12 @@
     <hamburger class="hamburger-container" />
 
     <!-- 面包屑 -->
-    <breadcrumb class="breadcrumb-container" />
+    <breadcrumb id="guide-breadcrumb" class="breadcrumb-container" />
 
     <!-- 右侧用户操作 -->
     <div class="right-menu">
+      <!-- guide 引导 -->
+      <guide class="right-menu-item hover-effect" />
       <!-- 全局搜索 -->
       <header-search class="right-menu-item hover-effect"></header-search>
       <!-- 全屏 -->
@@ -54,6 +56,7 @@ import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
 import HeaderSearch from '@/components/HeaderSearch/index.vue'
+import Guide from '@/components/Guide'
 
 const store = useStore()
 const onLogout = () => {

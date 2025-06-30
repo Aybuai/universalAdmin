@@ -20,13 +20,13 @@
         @click.prevent.stop="onCloseClick(index)"
       ></i>
     </router-link>
-  </div>
 
-  <context-menu
-    v-show="visible"
-    :style="menuStyle"
-    :index="selectIndex"
-  ></context-menu>
+    <context-menu
+      v-show="visible"
+      :style="menuStyle"
+      :index="selectIndex"
+    ></context-menu>
+  </div>
 </template>
 
 <script setup>
