@@ -2,7 +2,10 @@
   <div class="my-container">
     <el-row>
       <el-col :span="6">
-        <project-card class="project-card"></project-card>
+        <project-card
+          class="project-card"
+          :features="featureData"
+        ></project-card>
       </el-col>
       <el-col :span="18">
         <el-card>
@@ -28,9 +31,21 @@ import ProjectCard from './components/ProjectCard.vue'
 import Feature from './components/ProfileFeature.vue'
 import Chapter from './components/ProfileChapter.vue'
 import Author from './components/ProfileAuthor.vue'
+import { feature as getFeature } from '@/api/user'
 import { ref } from 'vue'
+import { watchSwitchLang } from '@/utils/i18n'
 
 const activeName = ref('feature')
+
+// 获取功能接口
+const featureData = ref([])
+const getFeatureData = async () => {
+  featureData.value = await getFeature()
+}
+getFeatureData()
+
+// 展示中英文数据
+watchSwitchLang(getFeatureData)
 </script>
 <style scoped lang="scss">
 .project-card {
