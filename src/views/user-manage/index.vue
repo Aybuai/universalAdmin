@@ -51,15 +51,17 @@
         </el-table-column>
         <!-- 操作 -->
         <el-table-column :label="$t('excel.action')" fixed="right" width="250">
-          <el-button type="primary" size="mini">{{
-            $t('excel.show')
-          }}</el-button>
-          <el-button type="info" size="mini">{{
-            $t('excel.showRole')
-          }}</el-button>
-          <el-button type="danger" size="mini">{{
-            $t('excel.remove')
-          }}</el-button>
+          <template #default="{ row }">
+            <el-button type="primary" size="mini">{{
+              $t('excel.show')
+            }}</el-button>
+            <el-button type="info" size="mini">{{
+              $t('excel.showRole')
+            }}</el-button>
+            <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
+              $t('excel.remove')
+            }}</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分页 -->
@@ -78,9 +80,11 @@
 </template>
 
 <script setup>
-import { getUserManageList } from '@/api/user-manage'
+import { deleteUser, getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 // 相关数据
@@ -116,6 +120,21 @@ const onSizeChange = (curSize) => {
 const onCurrentChange = (curPage) => {
   page.value = curPage
   getDataList()
+}
+
+// 删除指定用户
+const i18n = useI18n()
+const onRemoveClick = ({ username, _id }) => {
+  ElMessageBox.confirm(
+    `${i18n.t('excel.dialogTitle1')} ${username} ${i18n.t(
+      'excel.dialogTitle2'
+    )}`,
+    { type: 'warning' }
+  ).then(async () => {
+    await deleteUser(_id)
+    ElMessage.success(i18n.t('excel.removeSuccess'))
+    getDataList()
+  })
 }
 
 // 文件导入
