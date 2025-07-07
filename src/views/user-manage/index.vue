@@ -1,7 +1,9 @@
 <template>
   <div class="user-manage-container">
     <el-card class="header">
-      <el-button type="primary">{{ $t('excel.importExcel') }}</el-button>
+      <el-button type="primary" @click="onImportExcelClick">{{
+        $t('excel.importExcel')
+      }}</el-button>
       <el-button type="success">{{ $t('excel.exportExcel') }}</el-button>
     </el-card>
     <el-card>
@@ -78,7 +80,8 @@
 <script setup>
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
-import { ref } from 'vue'
+import { onActivated, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 // 相关数据
 const tableData = ref([])
@@ -97,9 +100,11 @@ const getDataList = async () => {
   total.value = res.total
 }
 getDataList()
-console.log(tableData.value, total.value)
 // 切换中英文重新获取接口
 watchSwitchLang(getDataList)
+
+// 处理导入用户后数据不重新加载的问题
+onActivated(getDataList)
 
 // 分页事件
 const onSizeChange = (curSize) => {
@@ -112,6 +117,13 @@ const onCurrentChange = (curPage) => {
   page.value = curPage
   getDataList()
 }
+
+// 文件导入
+const router = useRouter()
+const onImportExcelClick = () => {
+  router.push('/user/import')
+}
+// 文件导出
 </script>
 <style scoped lang="scss">
 .user-manage-container {
