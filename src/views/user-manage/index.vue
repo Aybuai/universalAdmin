@@ -42,10 +42,11 @@
           </template>
         </el-table-column>
         <!-- 时间 -->
-        <el-table-column
-          :label="$t('excel.openTime')"
-          prop="openTime"
-        ></el-table-column>
+        <el-table-column :label="$t('excel.openTime')" prop="openTime">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
+        </el-table-column>
         <!-- 操作 -->
         <el-table-column :label="$t('excel.action')" fixed="right" width="250">
           <el-button type="primary" size="mini">{{
@@ -101,8 +102,16 @@ console.log(tableData.value, total.value)
 watchSwitchLang(getDataList)
 
 // 分页事件
-const onSizeChange = () => {}
-const onCurrentChange = () => {}
+const onSizeChange = (curSize) => {
+  size.value = curSize
+  page.value = 1
+  getDataList()
+}
+
+const onCurrentChange = (curPage) => {
+  page.value = curPage
+  getDataList()
+}
 </script>
 <style scoped lang="scss">
 .user-manage-container {
