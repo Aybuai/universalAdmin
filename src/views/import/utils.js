@@ -1,14 +1,4 @@
 /**
- * 导入数据对应表
- */
-export const USER_RELATIONS = {
-  姓名: 'username',
-  联系方式: 'mobile',
-  角色: 'role',
-  开通时间: 'openTime'
-}
-
-/**
  * 解析 excel 导入的时间格式
  */
 export const formatDate = (numb) => {

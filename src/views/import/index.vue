@@ -8,7 +8,8 @@ import UploadExcel from '@/components/UploadExcel'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import { USER_RELATIONS, formatDate } from './utils'
+import { formatDate } from './utils'
+import { USER_RELATIONS } from '@/constant'
 
 const i18n = useI18n()
 const router = useRouter()

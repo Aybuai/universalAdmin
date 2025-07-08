@@ -4,7 +4,9 @@
       <el-button type="primary" @click="onImportExcelClick">{{
         $t('excel.importExcel')
       }}</el-button>
-      <el-button type="success">{{ $t('excel.exportExcel') }}</el-button>
+      <el-button type="success" @click="onExportExcelClick">{{
+        $t('excel.exportExcel')
+      }}</el-button>
     </el-card>
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
@@ -76,6 +78,9 @@
         :total="total"
       ></el-pagination>
     </el-card>
+
+    <!-- 导出文件 -->
+    <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
   </div>
 </template>
 
@@ -86,6 +91,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import ExportToExcel from './components/Export2Excel.vue'
 
 // 相关数据
 const tableData = ref([])
@@ -143,6 +149,10 @@ const onImportExcelClick = () => {
   router.push('/user/import')
 }
 // 文件导出
+const exportToExcelVisible = ref(false)
+const onExportExcelClick = () => {
+  exportToExcelVisible.value = true
+}
 </script>
 <style scoped lang="scss">
 .user-manage-container {
