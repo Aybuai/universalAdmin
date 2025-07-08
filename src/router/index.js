@@ -53,6 +53,7 @@ const privateRoutes = [
         path: '/user/info/:id',
         name: 'userInfo',
         component: () => import('@/views/user-info/index'),
+        props: true, // 允许路由跳转携带参数以 props 形式传入组件内
         meta: {
           title: 'userInfo'
         }

@@ -54,9 +54,12 @@
         <!-- 操作 -->
         <el-table-column :label="$t('excel.action')" fixed="right" width="250">
           <template #default="{ row }">
-            <el-button type="primary" size="mini">{{
-              $t('excel.show')
-            }}</el-button>
+            <el-button
+              type="primary"
+              size="mini"
+              @click="onShowClick(row._id)"
+              >{{ $t('excel.show') }}</el-button
+            >
             <el-button type="info" size="mini">{{
               $t('excel.showRole')
             }}</el-button>
@@ -128,6 +131,12 @@ const onCurrentChange = (curPage) => {
   getDataList()
 }
 
+// 用户详情
+const router = useRouter()
+const onShowClick = (id) => {
+  router.push(`/user/info/${id}`)
+}
+
 // 删除指定用户
 const i18n = useI18n()
 const onRemoveClick = ({ username, _id }) => {
@@ -144,7 +153,6 @@ const onRemoveClick = ({ username, _id }) => {
 }
 
 // 文件导入
-const router = useRouter()
 const onImportExcelClick = () => {
   router.push('/user/import')
 }
