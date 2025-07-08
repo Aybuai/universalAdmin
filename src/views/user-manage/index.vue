@@ -101,7 +101,7 @@ import { onActivated, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import ExportToExcel from './components/Export2Excel.vue'
-import rolesDialog from './components/rolesDialog.vue'
+import RolesDialog from './components/RolesDialog.vue'
 
 // 相关数据
 const tableData = ref([])
