@@ -2,7 +2,7 @@ import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 import { setTimeStamp } from '@/utils/auth'
 
 export default {
@@ -71,10 +71,11 @@ export default {
      * 2、被动处理：同时应对 token 失效 与 单用户登录
      */
     logout() {
+      // 清理路由权限相关配置
+      resetRouter()
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       removeAllItem()
-      // TODO: 清理权限相关配置
       router.push('/login')
     }
   }
