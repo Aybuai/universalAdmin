@@ -53,10 +53,13 @@
 
 <script setup>
 import { ref, onActivated, onMounted } from 'vue'
-import { getArticleList } from '@/api/article'
+import { deleteArticle, getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
 import { tableRef, initSortable } from './sortable'
+import { useI18n } from 'vue-i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 // 数据相关
 const tableData = ref([])
@@ -81,6 +84,7 @@ onActivated(getListData)
 
 // 表格拖拽相关
 onMounted(() => {
+  // 不传 tableData.value，不然会失去响应式数据
   initSortable(tableData, getListData)
 })
 
@@ -102,12 +106,24 @@ const handleCurrentChange = (currentPage) => {
 }
 
 // 显示事件
+const router = useRouter()
 const onShowClick = (row) => {
-  console.log(row, 'show')
+  router.push(`/article/${row._id}`)
 }
 // 删除事件
+const i18n = useI18n()
 const onRemoveClick = (row) => {
-  console.log(row, 'delete')
+  ElMessageBox.confirm(
+    i18n.t('article.dialogTitle1') + row.title + i18n.t('article.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteArticle(row._id)
+    ElMessage.success(i18n.t('article.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
 }
 </script>
 

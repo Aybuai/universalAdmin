@@ -30,7 +30,7 @@ export const initSortable = (tableData, cb) => {
         finalRanking: tableData.value[newIndex].ranking
       })
 
-      ElMessage.success(`${i18n.global.t('article.sortSuccess')}`)
+      ElMessage.success(i18n.global.t('article.sortSuccess'))
 
       // 直接重新获取数据无法刷新 table！！
       tableData.value = []
