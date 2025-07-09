@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import rt from 'dayjs/plugin/relativeTime'
+// 语言包，dayjs 默认为 en，不支持 zh-cn，需要手动导入
 import 'dayjs/locale/zh-cn'
 import store from '@/store'
 
