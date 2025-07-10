@@ -51,5 +51,8 @@ if (articleId) {
 <style scoped lang="scss">
 .title-input {
   margin-bottom: 20px;
+  box-shadow: 0 0 0 1px #dddfe5;
+  border-radius: 4px;
+  padding: 5px;
 }
 </style>

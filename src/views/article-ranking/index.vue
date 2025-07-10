@@ -26,10 +26,10 @@
             {{ $filters.relativeTime(row.publicDate) }}
           </template>
           <template #default="{ row }" v-else-if="item.prop === 'action'">
-            <el-button type="primary" size="mini" @click="onShowClick(row)">{{
+            <el-button type="primary" size="small" @click="onShowClick(row)">{{
               $t('article.show')
             }}</el-button>
-            <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{
+            <el-button type="danger" size="small" @click="onRemoveClick(row)">{{
               $t('article.remove')
             }}</el-button>
           </template>
@@ -148,7 +148,12 @@ const onRemoveClick = (row) => {
 
   .pagination {
     margin-top: 20px;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    ::v-deep .el-input__inner {
+      box-shadow: 0 0 0 1px #dddfe5 !important;
+      border-radius: 4px;
+    }
   }
 }
 

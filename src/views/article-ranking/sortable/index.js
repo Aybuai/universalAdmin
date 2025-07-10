@@ -12,9 +12,7 @@ export const tableRef = ref(null)
  */
 export const initSortable = (tableData, cb) => {
   // 设置拖拽效果
-  const el = tableRef.value.$el.querySelector(
-    '.el-table__body-wrapper > table > tbody'
-  )
+  const el = tableRef.value.$el.querySelector('.el-table__body > tbody')
 
   // 1. 要拖拽的元素
   // 2. 配置对象
